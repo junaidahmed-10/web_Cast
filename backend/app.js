@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import userRoutes from './routes/userRoutes.js'
 import categoryRoutes from './routes/categoryRoutes.js'
+import podcastRoutes from './routes/podcastRoutes.js'
 
 dotenv.config()
 // require('./DataBase/DB_Connect.js')
@@ -17,6 +18,7 @@ app.use(express.json())
 
 app.use("/api/v1", userRoutes)
 app.use("/api/v1", categoryRoutes)
+app.use("/api/v1", podcastRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`app is listening on ${process.env.PORT}`);
