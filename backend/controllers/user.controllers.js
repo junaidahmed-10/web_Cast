@@ -90,7 +90,7 @@ export const signIn = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.status(500).json({ error })
+        res.status(500).json({ error: error })
     }
 }
 
@@ -100,7 +100,7 @@ export const logOut = async (req, res) => {
     res.clearCookie("podcastUserToken", {
         httpOnly: true
     })
-    res.status(200).json({ message: "Logged Out Successfully"})
+    res.status(200).json({ message: "Logged Out Successfully" })
 }
 //checking cookie present or not
 
@@ -108,11 +108,26 @@ export const check = async (req, res) => {
     const token = req.cookies.podcastUserToken
     try {
         if (token) {
-            res.status(200).json({ message: true})
-        }else{
-        res.status(200).json({ message: false})
+            res.status(200).json({ message: true })
+        } else {
+            res.status(200).json({ message: false })
         }
     } catch (error) {
         console.log(error);
-     }
+    }
+}
+
+//Route to Fetch user details
+
+export const userDetails = async (req, res) => {
+    try {
+        const { email } = req.user;
+        const existingUser = await User.findOne({ email : email }).select("-password");
+        console.log(existingUser);
+        
+        return res.status(200).json({ user : existingUser})
+    } catch (error) {
+        console.log("userDetails: ", error);
+        res.status(500).json({ error: error })
+    }
 }
