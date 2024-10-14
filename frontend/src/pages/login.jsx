@@ -3,10 +3,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { authAction } from '../store/auth'
+import ErrorPage from './errorPage';
 
 
 function Login() {
-
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
     const [values, setValues] = useState({
         email: "",
@@ -19,9 +23,10 @@ function Login() {
     }
     const handleSubmit = async () => {
         try {
-            const res = await axios.post("http://localhost:5000/api/v1/signIn", values);
-            toast.success(res.data.message);
-            navigate('/')
+            const res = await axios.post("http://localhost:5000/api/v1/signIn", values, { withCredentials: true })
+            dispatch(authAction.login())
+            console.log(res.data.message);
+            navigate('/profile')
         } catch (error) {
             toast.error(error.response.data.message)
             console.log("handleSubmit: ", error);
@@ -29,7 +34,7 @@ function Login() {
     }
 
     return (
-        <div className='h-screen bg-green-100 flex items-center justify-center'>
+        <>{isLoggedIn ? <ErrorPage /> : <div className='h-screen bg-green-100 flex items-center justify-center'>
             <ToastContainer />
             <div className='w-4/6 md:w-3/6 lg:w-2/6 flex flex-col items-center justify-center'>
                 <Link to="/" className='text-2xl font-bold'>
@@ -57,7 +62,7 @@ function Login() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>}</>
     )
 }
 

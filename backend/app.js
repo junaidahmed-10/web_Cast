@@ -11,7 +11,10 @@ dotenv.config()
 import DB_Connect from './DataBase/DB_Connect.js'
 DB_Connect();
 const app = express();
-app.use(cors())
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}))
 app.use(cookieParser())
 
 app.use(express.json())
@@ -24,4 +27,4 @@ app.use("/api/v1", podcastRoutes)
 
 app.listen(process.env.PORT, () => {
     console.log(`app is listening on ${process.env.PORT}`);
-    })
+})

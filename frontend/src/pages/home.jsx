@@ -33,8 +33,8 @@ function Home() {
                     </button>
                 </div>
                 <div className="mt-8 lg:mt-0">
-                    <p className='text-zinc-600 font-semibold text-center lg:text-end'>our app contains thousands of podcasts for you
-
+                    <p className='text-zinc-600 font-semibold text-center lg:text-end'>
+                        our app contains thousands of podcasts for you
                     </p>
                 </div>
             </div>

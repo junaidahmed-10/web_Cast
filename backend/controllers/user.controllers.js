@@ -105,12 +105,13 @@ export const logOut = async (req, res) => {
 //checking cookie present or not
 
 export const check = async (req, res) => {
-    const token = req.cookies.podcastUserToken
+    const token = await req.cookies.podcastUserToken               //.podcastUserToken
+    console.log(token);
     try {
         if (token) {
-            res.status(200).json({ message: true })
+            return res.status(200).json({ message: true })
         } else {
-            res.status(200).json({ message: false })
+            return res.status(200).json({ message: false })
         }
     } catch (error) {
         console.log(error);
@@ -122,10 +123,10 @@ export const check = async (req, res) => {
 export const userDetails = async (req, res) => {
     try {
         const { email } = req.user;
-        const existingUser = await User.findOne({ email : email }).select("-password");
+        const existingUser = await User.findOne({ email: email }).select("-password");
         console.log(existingUser);
-        
-        return res.status(200).json({ user : existingUser})
+
+        return res.status(200).json({ user: existingUser })
     } catch (error) {
         console.log("userDetails: ", error);
         res.status(500).json({ error: error })

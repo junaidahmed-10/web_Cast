@@ -2,10 +2,16 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IoReorderThreeOutline } from "react-icons/io5";
 import { ImCross } from "react-icons/im";
+import { useSelector } from 'react-redux';
 
 
 
 function Navbar() {
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  // console.log(isLoggedIn);
+
+
   const [mobileNav, setMobileNav] = useState(false)
 
   const navLinks = [
@@ -21,10 +27,10 @@ function Navbar() {
       name: "All Podcasts",
       path: "/allPodcasts"
     },
-    {
-      name: "Profile",
-      path: "/profile"
-    }
+    // {
+    //   name: "Profile",
+    //   path: "/profile"
+    // }
   ]
   return (
     <nav className='px-4 md:px-8 lg:px-12 py-2 relative '>
@@ -42,13 +48,16 @@ function Navbar() {
             </Link>
           ))}
         </div>
-        <div className='hidden w-2/6 lg:flex items-center justify-end'>
-          <Link className='px-6 py-3 border border-black rounded-full'>
+        <div className=' w-2/6 lg:flex items-center justify-end'>  {/*hidden*/}
+          {!isLoggedIn && (<> {" "}<Link to="/login" className='px-6 py-3 border border-black rounded-full'>
             Login</Link>
-          <Link className='ms-4 px-6 py-3 bg-black text-white rounded-full'>
-            SignUp</Link>
+            <Link to="/signup" className='ms-4 px-6 py-3 bg-black text-white rounded-full'>
+              SignUp</Link></>)
+          }
+          {isLoggedIn && <Link to="/profile" className='ms-4 px-6 py-3 bg-black text-white rounded-full'>
+            Profile</Link>}
         </div>
-        <div className='w-4/6 flex items-center justify-end lg:hidden z-[1000]'>
+        <div className='w-4/6 flex items-center justify-end lg:hidden z-50'>
           <button className={`text-4xl ${mobileNav ? "rotate-360" : "rotate-180"} transition-all duration-300`} onClick={() => setMobileNav(!mobileNav)}>{mobileNav ? <ImCross /> : <IoReorderThreeOutline />}</button>
         </div>
       </div>
@@ -78,3 +87,9 @@ function Navbar() {
 }
 
 export default Navbar
+
+
+{/* <Link to="login" className='px-6 py-3 border border-black rounded-full'>
+            Login</Link>
+          <Link to="/signup" className='ms-4 px-6 py-3 bg-black text-white rounded-full'>
+            SignUp</Link> */}
