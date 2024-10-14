@@ -72,7 +72,7 @@ export const signIn = async (req, res) => {
 
         //Generate JWT Token
 
-        const token = jwt.sign({ id: existingUser._id, email: existingUser.email },
+        const token = await jwt.sign({ id: existingUser._id, email: existingUser.email },
             process.env.JWT_SECRET, { expiresIn: "30d" })
 
         res.cookie("podcastUserToken", token, {

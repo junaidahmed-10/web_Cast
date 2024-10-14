@@ -11,13 +11,24 @@ dotenv.config()
 import DB_Connect from './DataBase/DB_Connect.js'
 DB_Connect();
 const app = express();
-app.use(cors({
-    origin: "http://localhost:5173",
-    credentials: true
-}))
-app.use(cookieParser())
-
 app.use(express.json())
+app.use(cookieParser())
+app.use(
+    cors({
+        origin: 'http://localhost:5173',
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: [
+            "Content-Type",
+            "Authorization",
+            "Expires",
+            "Cache-Control",
+            "Pragma"
+        ],
+        credentials : true
+    })
+)
+
+
 
 //API's
 
