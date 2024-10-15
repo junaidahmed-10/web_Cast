@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import { authAction } from './store/auth'
+import AddPodcasts from './pages/addPodcasts'
 
 function App() {
   const dispatch = useDispatch()
@@ -41,6 +42,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path='/categories' element={<Categories />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/add-podcasts' element={<AddPodcasts />} />
           </Route>
           <Route path="/" element={<AuthLayout />}>
             <Route path='/signup' element={<SignUp />} />
