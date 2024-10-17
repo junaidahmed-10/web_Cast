@@ -5,7 +5,7 @@ import { addPodcasts, getAllPodcasts, getPodcastByCat, getPodcastById, getUserPo
 
 const router = express.Router();
 
-router.route("/addPodcast").post(authMiddleware, uploads, addPodcasts)
+router.route("/addPodcasts").post(authMiddleware, uploads, addPodcasts)
 router.route("/getAllPodcasts").get(getAllPodcasts)
 router.route("/getUserPodcasts").get(authMiddleware, getUserPodcasts)
 router.route("/getPodcastbyId").get(getPodcastById)

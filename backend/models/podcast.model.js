@@ -6,7 +6,7 @@ const podcastSchema = new mongoose.Schema({
         unique: true,
         require: true
     },
-    audiofile: {
+    audioFile: {
         type: String,
         unique: true,
         require: true
@@ -16,15 +16,20 @@ const podcastSchema = new mongoose.Schema({
         unique: true,
         require: true
     },
+    description: {
+        type: String,
+        unique: true,
+        require: true
+    },
     user: {
         type: mongoose.Types.ObjectId,
-        ref: "user"
+        ref: "User"
     },
     category: {
         type: mongoose.Types.ObjectId,
-        ref: "category"
+        ref: "Category"
     }
 
 }, { timestamps: true })
 
-export const Podcasts = mongoose.model("podcasts", podcastSchema) 
+export const Podcasts = mongoose.model("Podcasts", podcastSchema) 

@@ -19,9 +19,9 @@ const userSchema = new mongoose.Schema({
     podcasts: [
         {
             type: mongoose.Types.ObjectId,
-            ref: "podcasts"
+            ref: "Podcasts"
         }
     ]
 }, { timestamps: true} )
 
-export const User = mongoose.model("user", userSchema) 
+export const User = mongoose.model("User", userSchema) 

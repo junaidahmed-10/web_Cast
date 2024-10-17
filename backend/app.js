@@ -12,6 +12,9 @@ import DB_Connect from './DataBase/DB_Connect.js'
 DB_Connect();
 const app = express();
 app.use(express.json())
+app.use(express.urlencoded({
+    extended: true
+}))
 app.use(cookieParser())
 app.use(
     cors({
@@ -24,7 +27,7 @@ app.use(
             "Cache-Control",
             "Pragma"
         ],
-        credentials : true
+        credentials: true
     })
 )
 

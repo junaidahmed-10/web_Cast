@@ -9,10 +9,10 @@ const categorySchema = new mongoose.Schema({
     podcasts: [
         {
             type: mongoose.Types.ObjectId,
-            ref: "podcasts"
+            ref: "Podcasts"
         }
     ]
 
 }, { timestamps: true })
 
-export const Category = mongoose.model("category", categorySchema) 
+export const Category = mongoose.model("Category", categorySchema) 

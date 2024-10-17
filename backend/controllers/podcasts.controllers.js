@@ -1,4 +1,5 @@
 import { uploads } from "../middlewares/multer.js";
+import multer from "multer";
 import { Category } from "../models/category.model.js";
 import { Podcasts } from "../models/podcast.model.js";
 import { User } from "../models/user.model.js";
@@ -6,10 +7,12 @@ import { User } from "../models/user.model.js";
 export const addPodcasts = async (req, res) => {
     try {
         const { title, description, category } = req.body;
-        const frontImage = req.files["frontImage"][0].path;
-        const audiofile = req.files["audiofile"][0].path;
+        const frontImage = req.files["frontImage"][0].path
+        console.log(frontImage);
+        
+        const audioFile = req.files["audioFile"][0].path;
 
-        if (!title || !description || !category || !frontImage || !audiofile) {
+        if (!title || !description || !category || !frontImage || !audioFile) {
             return res.status(400).json({ message: "All fields are required" })
         }
 
@@ -26,7 +29,7 @@ export const addPodcasts = async (req, res) => {
             description,
             category: catId,
             frontImage,
-            audiofile,
+            audioFile,
             user: userId
         })
 
