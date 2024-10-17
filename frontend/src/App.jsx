@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux'
 import { authAction } from './store/auth'
 import AddPodcasts from './pages/addPodcasts'
 import AllPodcasts from './pages/allPodcasts'
+import CategoriesPage from './pages/categoriesPage'
+import Description from './pages/description'
 
 function App() {
   const dispatch = useDispatch()
@@ -45,6 +47,8 @@ function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/addPodcasts' element={<AddPodcasts />} />
             <Route path='/allPodcasts' element={<AllPodcasts />} />
+            <Route path='/categories/:cat' element={<CategoriesPage />} />
+            <Route path='/description/:id' element={<Description />} />
           </Route>
           <Route path="/" element={<AuthLayout />}>
             <Route path='/signup' element={<SignUp />} />

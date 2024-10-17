@@ -92,7 +92,7 @@ export const getPodcastById = async (req, res) => {
     try {
         const { id } = req.params;
         const podcasts = await Podcasts.findById(id)
-            .populate("category")
+            .populate("Category")
         return res.status(200).json({ data: podcasts })
     } catch (error) {
         return res.status(500).json({

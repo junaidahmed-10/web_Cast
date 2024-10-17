@@ -8,7 +8,7 @@ const router = express.Router();
 router.route("/addPodcasts").post(authMiddleware, uploads, addPodcasts)
 router.route("/getAllPodcasts").get(getAllPodcasts)
 router.route("/getUserPodcasts").get(authMiddleware, getUserPodcasts)
-router.route("/getPodcastbyId").get(getPodcastById)
-router.route("/getPodcastbyCat").get(getPodcastByCat)
+router.route("/getPodcastbyId/:id").get(getPodcastById)
+router.route("/getPodcastbyCat/:cat").get(getPodcastByCat)
 
 export default router;

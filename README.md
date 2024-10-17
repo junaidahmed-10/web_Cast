@@ -2,6 +2,10 @@
 A Resume Project
 
 
-user-detail api is not working
+user-detail api is not working - now working
 
-check podcaster logo, which is not working
+check podcaster logo, which is not working - now working
+
+addPodcasts API is not working
+
+categories, podcasts buttons are not working
