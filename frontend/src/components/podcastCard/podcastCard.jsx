@@ -1,10 +1,23 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { playerAction } from '../../store/player'
 
 function PodcastCard({ items }) {
 
+    const dispatch = useDispatch()
+
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+
+    const handlePlay = (e) => {
+       if (isLoggedIn) {
+        e.preventDefault();
+        dispatch(playerAction.setDiv())
+        dispatch(playerAction.changeImage(`http://localhost:5000/${items.frontImage}`))
+        dispatch(playerAction.changeSong(`http://localhost:5000/${items.audioFile}`))
+
+       }
+    }
 
     return (
         <div>
@@ -29,7 +42,8 @@ function PodcastCard({ items }) {
                 <div
                     className="mt-2">
                     <Link to={isLoggedIn ? "#" : "/signup"}
-                        className='bg-green-900 text-white px-4 py-2 rounded mt-2 flex items-center justify-center hover:bg-green-800 transition-all duration-300'>
+                        className='bg-green-900 text-white px-4 py-2 rounded mt-2 flex items-center justify-center hover:bg-green-800 transition-all duration-300'
+                        onClick={handlePlay}>
                         Play Now
                     </Link>
                 </div>

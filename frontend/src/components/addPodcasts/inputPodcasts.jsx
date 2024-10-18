@@ -148,7 +148,8 @@ function InputPodcasts() {
                         <button
                             className='bg-zinc-900 w-full text-white rounded px-8 py-2 font-semibold hover:bg-zinc-800 transition-all duration-300'
                             onClick={handleSubmitPodcast}>
-                            Create Podcast</button>
+                            Create Podcast
+                        </button>
                     </div>
                 </div>
             </div>

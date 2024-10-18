@@ -74,12 +74,15 @@ function Navbar() {
               {items.name}
             </Link>
           ))}
-          <Link to="/login" className='mb-6 hover:font-semibold transition-all duration-300'>
+          {!isLoggedIn ? <><Link to="/login" className='mb-6 hover:font-semibold transition-all duration-300'>
             Login
           </Link>
-          <Link to="/signup" className='mb-6 hover:font-semibold transition-all duration-300'>
-            signUp
-          </Link>
+            <Link to="/signup" className='mb-6 hover:font-semibold transition-all duration-300'>
+              signUp
+            </Link></> : <> <Link to="/profile" className='mb-6 hover:font-semibold transition-all duration-300'>
+              Profile
+            </Link></>}
+
         </div>
       </div>
     </nav>
